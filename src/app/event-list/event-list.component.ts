@@ -1,11 +1,11 @@
 import { Component, OnInit } from '@angular/core';
 
 @Component({
-  selector: 'evn-events-list',
-  templateUrl: './events-list.component.html',
-  styleUrls: ['./events-list.component.css']
+  selector: 'app-event-list',
+  templateUrl: './event-list.component.html',
+  styleUrls: ['./event-list.component.css']
 })
-export class EventsListComponent implements OnInit {
+export class EventListComponent implements OnInit {
 
   event = {
     id: 1,
@@ -23,5 +23,7 @@ export class EventsListComponent implements OnInit {
 
   constructor() { }
 
-  ngOnInit() { }
+  ngOnInit() {
+  }
+
 }
