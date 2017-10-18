@@ -1,0 +1,12 @@
+<div class="well hoverwell thumbnail">
+  <h4>{{latestEvent.name}}</h4>
+  <div>Date: {{latestEvent.date}}</div>
+  <div>Time: {{latestEvent.time}}</div>
+  <div>Price: {{latestEvent.price | currency:'USD':true}}</div>
+  <div>
+    <span>Location: {{latestEvent.location.address}}</span>
+    <span>&nbsp;</span>
+    <span>{{latestEvent.location.city}}, {{latestEvent.location.courntry}}</span>
+  </div>
+  <button class="btn btn-primary" (click)="handleClickMe()">Click me!</button>
+</div>
