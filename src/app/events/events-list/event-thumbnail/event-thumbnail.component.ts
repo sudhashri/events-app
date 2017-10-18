@@ -1,4 +1,4 @@
-import { Component, OnInit, Input, EventEmitter, Output } from '@angular/core';
+import { Component, OnInit, Input } from '@angular/core';
 
 @Component({
   selector: 'evn-event-thumbnail',
@@ -8,14 +8,27 @@ import { Component, OnInit, Input, EventEmitter, Output } from '@angular/core';
 export class EventThumbnailComponent implements OnInit {
 
   @Input() latestEvent: any;
-  @Output() eventClick = new EventEmitter();
+
+  counter = 0;
 
   constructor() { }
 
   ngOnInit() {
   }
 
-  handleClickMe() {
-   this.eventClick.emit(this.latestEvent.name);
+  increment() {
+    console.log('counter - before increment: ' + this.counter);
+    this.counter++;
+    console.log('counter - after increment: ' + this.counter);
+  }
+
+  decrement() {
+    if (this.counter !== 0) {
+      console.log('counter - before decrement: ' + this.counter);
+      this.counter--;
+      console.log('counter - after decrement: ' + this.counter);
+    } else {
+      console.log('counterer cannot be decremented');
+    }
   }
 }

@@ -24,8 +24,4 @@ export class EventsListComponent implements OnInit {
   constructor() { }
 
   ngOnInit() { }
-
-  handleButtonClick(msg) {
-    console.log(msg);
-  }
 }

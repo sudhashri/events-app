@@ -1,5 +1,9 @@
 <div>
   <h3>Upcoming Angular 2 Events</h3>
   <hr>
-  <evn-event-thumbnail [latestEvent]="event" (eventClick)="handleButtonClick($event)"></evn-event-thumbnail>
+  <evn-event-thumbnail #thumbnail [latestEvent]="event"></evn-event-thumbnail>
+
+  <h5>Counter: {{thumbnail.counter}}</h5>
+  <button class="btn btn-primary" (click)="thumbnail.increment()">Increment</button>
+  <button class="btn btn-primary" (click)="thumbnail.decrement()" [class.disabled]='!thumbnail.counter'>Decrement</button>
 </div>
