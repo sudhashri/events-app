@@ -14,4 +14,10 @@ export class EventThumbnailComponent implements OnInit {
   ngOnInit() {
   }
 
+  getStartTimeClass(): any {
+    if (this.latestEvent.time === '8:00 am') {
+      return 'green bold';
+    }
+    return '';
+  }
 }
