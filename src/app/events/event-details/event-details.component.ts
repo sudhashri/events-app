@@ -3,12 +3,14 @@ import { Router, ActivatedRoute } from '@angular/router';
 
 import { EventListService } from '../event-list/event-list.service';
 
+import { IEvent } from '../../models/events/event';
+
 @Component({
   templateUrl: './event-details.component.html',
   styleUrls: ['./event-details.component.css']
 })
 export class EventDetailsComponent implements OnInit {
-  event: any;
+  event: IEvent;
 
   constructor(
     private _route: ActivatedRoute,

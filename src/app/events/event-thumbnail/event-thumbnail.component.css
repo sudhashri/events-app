@@ -1,7 +1,15 @@
 .pad-left {
-  margin-left:10px;
+  margin-left: 10px;
 }
 
 .thumbnail {
   min-height: 170px;
+}
+
+.green {
+  color: #003300;
+}
+
+.bold {
+  font-weight: bold;
 }

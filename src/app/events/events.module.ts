@@ -11,6 +11,7 @@ import { EventsRoutingModule } from './events-routing.module';
 import { EventListService } from './event-list/event-list.service';
 import { EventRouteActivatorService } from './event-details/event-route-activator.service';
 import { CreateRouteDeactivatorService } from './create-event/create-event-deactivator.service';
+import { StringToDate } from './event-thumbnail/convert-to-date.pipe';
 
 @NgModule({
   imports: [CommonModule, EventsRoutingModule],
@@ -18,7 +19,8 @@ import { CreateRouteDeactivatorService } from './create-event/create-event-deact
     EventListComponent,
     EventThumbnailComponent,
     EventDetailsComponent,
-    CreateEventComponent
+    CreateEventComponent,
+    StringToDate
   ],
   providers: [
     EventListService,
