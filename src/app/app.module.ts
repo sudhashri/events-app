@@ -1,27 +1,33 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { HttpClientModule } from '@angular/common/http';
 import { ToastModule } from 'ng2-toastr/ng2-toastr';
 
+import { AppRoutingModule } from './app-routing.module';
+import { EventsModule } from './events/events.module';
+import { UserModule } from './user/user.module';
+
 import { AppComponent } from './app.component';
-import { EventListComponent } from './event-list/event-list.component';
-import { EventThumbnailComponent } from './event-thumbnail/event-thumbnail.component';
 import { NavComponent } from './nav/nav.component';
-import { EventListService } from './event-list/event-list.service';
+import { Error404Component } from './errors/404.component';
 
 @NgModule({
   declarations: [
     AppComponent,
-    EventListComponent,
-    EventThumbnailComponent,
-    NavComponent
+    NavComponent,
+    Error404Component
   ],
   imports: [
     BrowserModule,
     BrowserAnimationsModule,
-    ToastModule.forRoot()
+    ToastModule.forRoot(),
+    HttpClientModule,
+    AppRoutingModule,
+    UserModule,
+    EventsModule
   ],
-  providers: [EventListService],
+  providers: [ ],
   bootstrap: [AppComponent]
 })
-export class AppModule { }
+export class AppModule {}

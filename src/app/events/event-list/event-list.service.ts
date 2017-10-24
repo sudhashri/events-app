@@ -1,12 +1,33 @@
 import { Injectable } from '@angular/core';
+import { HttpClient, HttpErrorResponse } from '@angular/common/http';
+import { Observable } from 'rxjs/Observable';
+import { Subject } from 'rxjs/RX';
+import 'rxjs/add/operator/catch';
+import 'rxjs/add/operator/do';
+import 'rxjs/add/operator/map';
+import 'rxjs/add/observable/throw';
 
 @Injectable()
 export class EventListService {
+  private _listOfEventsUrl = '../../../api/events/events.json';
+  private events: any[];
 
-  constructor() { }
+  constructor(private _http: HttpClient) {}
 
-  getEventsList(): any {
-    return EVENTS;
+  getEventsList(): Observable<any> {
+    return this._http
+      .get<any[]>(this._listOfEventsUrl)
+      .do(data => (this.events = data))
+      .catch(this.handleError);
+  }
+
+  getEvent(id: number) {
+    return EVENTS.find(data => data.id === id);
+  }
+
+  private handleError(err: HttpErrorResponse) {
+    console.error(err.message);
+    return Observable.throw(err.message);
   }
 }
 
@@ -17,7 +38,7 @@ const EVENTS = [
     date: '9/26/2036',
     time: '10:00 am',
     price: 599.99,
-    imageUrl: '/app/assets/images/angularconnect-shield.png',
+    imageUrl: '/assets/images/angularconnect-shield.png',
     location: {
       address: '1057 DT',
       city: 'London',
@@ -94,8 +115,8 @@ const EVENTS = [
     name: 'ng-nl',
     date: '4/15/2037',
     time: '9:00 am',
-    price: 950.00,
-    imageUrl: '/app/assets/images/ng-nl.png',
+    price: 950.0,
+    imageUrl: '/assets/images/ng-nl.png',
     location: {
       address: 'The NG-NL Convention Center & Scuba Shop',
       city: 'Amsterdam',
@@ -146,7 +167,7 @@ const EVENTS = [
           of the United States through his amazing programming skills,
           showing how you too can be success with just attitude.`,
         voters: ['bradgreen']
-      },
+      }
     ]
   },
   {
@@ -154,8 +175,8 @@ const EVENTS = [
     name: 'ng-conf 2037',
     date: '5/4/2037',
     time: '9:00 am',
-    price: 759.00,
-    imageUrl: '/app/assets/images/ng-conf.png',
+    price: 759.0,
+    imageUrl: '/assets/images/ng-conf.png',
     onlineUrl: 'http://ng-conf.org/',
     sessions: [
       {
@@ -216,7 +237,7 @@ const EVENTS = [
       },
       {
         id: 6,
-        name: 'These aren\'t the directives you\'re looking for',
+        name: 'These are not the directives you are looking for',
         presenter: 'John Papa',
         duration: 2,
         level: 'Intermediate',
@@ -224,7 +245,7 @@ const EVENTS = [
           to use directives in your Angular 4 development while drawing lessons from the new movie,
           featuring all your favorite characters like Han Solo's ghost and Darth Jar Jar.`,
         voters: ['bradgreen', 'martinfowler']
-      },
+      }
     ]
   },
   {
@@ -232,8 +253,8 @@ const EVENTS = [
     name: 'UN Angular Summit',
     date: '6/10/2037',
     time: '8:00 am',
-    price: 800.00,
-    imageUrl: '/app/assets/images/basic-shield.png',
+    price: 800.0,
+    imageUrl: '/assets/images/basic-shield.png',
     location: {
       address: 'The UN Angular Center',
       city: 'New York',
@@ -273,7 +294,7 @@ const EVENTS = [
           the latest Destiny DLC, but we can still improve the massages they give and the handmade
           brie they make using Angular 4. This session will show you how.`,
         voters: ['igorminar', 'johnpapa']
-      },
+      }
     ]
   },
   {
@@ -281,8 +302,8 @@ const EVENTS = [
     name: 'ng-vegas',
     date: '2/10/2037',
     time: '9:00 am',
-    price: 400.00,
-    imageUrl: '/app/assets/images/ng-vegas.png',
+    price: 400.0,
+    imageUrl: '/assets/images/ng-vegas.png',
     location: {
       address: 'The Excalibur',
       city: 'Las Vegas',

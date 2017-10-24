@@ -4,7 +4,6 @@ import { ToastsManager } from 'ng2-toastr/ng2-toastr';
 import { EventListService } from './event-list.service';
 
 @Component({
-  selector: 'app-event-list',
   templateUrl: './event-list.component.html',
   styleUrls: ['./event-list.component.css']
 })
@@ -15,7 +14,8 @@ export class EventListComponent implements OnInit {
   constructor(private _eventListService: EventListService, private _toastr: ToastsManager) { }
 
   ngOnInit() {
-    this.events = this._eventListService.getEventsList();
+    this._eventListService.getEventsList()
+      .subscribe(events => { this.events = events; });
   }
 
   handleThumbnailClick(eventName: string) {
