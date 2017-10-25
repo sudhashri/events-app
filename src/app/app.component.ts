@@ -14,6 +14,6 @@ export class AppComponent implements OnInit {
   }
 
   ngOnInit() {
-    this._toastr.success('App loaded!', 'Success!');
+    // this._toastr.success('App loaded!', 'Success!');
   }
 }

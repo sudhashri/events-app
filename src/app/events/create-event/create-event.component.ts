@@ -18,5 +18,4 @@ export class CreateEventComponent implements OnInit {
   private onCancel(): void {
     this._router.navigate(['/events']);
   }
-
 }

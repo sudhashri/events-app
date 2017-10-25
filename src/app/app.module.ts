@@ -11,6 +11,7 @@ import { UserModule } from './user/user.module';
 import { AppComponent } from './app.component';
 import { NavComponent } from './nav/nav.component';
 import { Error404Component } from './errors/404.component';
+import { AuthService } from './user/auth.service';
 
 @NgModule({
   declarations: [
@@ -27,7 +28,7 @@ import { Error404Component } from './errors/404.component';
     UserModule,
     EventsModule
   ],
-  providers: [ ],
+  providers: [AuthService],
   bootstrap: [AppComponent]
 })
 export class AppModule {}
