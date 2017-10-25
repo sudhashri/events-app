@@ -4,12 +4,15 @@ import { RouterModule } from '@angular/router';
 import { ProfileComponent } from './profile/profile.component';
 import { LoginComponent } from './login/login.component';
 
+import { ProfileActivatorService } from './profile/profile-activator.service';
+
 @NgModule({
   imports: [
     RouterModule.forChild([
       {
         path: 'profile',
-        component: ProfileComponent
+        component: ProfileComponent,
+        canActivate: [ProfileActivatorService]
       },
       {
         path: 'login',

@@ -1,4 +1,5 @@
 import { Injectable } from '@angular/core';
+import { ToastsManager } from 'ng2-toastr/ng2-toastr';
 
 import { IUser } from '../models/user/user';
 
@@ -6,7 +7,7 @@ import { IUser } from '../models/user/user';
 export class AuthService {
   currentUser: IUser;
 
-  constructor() {}
+  constructor(public _toastr: ToastsManager) {}
 
   loginUser(userName: string, password: string): void {
     this.currentUser = {
@@ -15,9 +16,16 @@ export class AuthService {
       firstName: 'John',
       lastName: 'Papa'
     };
+    // this._toastr.success('User login completed!');
   }
 
   isAuthenticated(): boolean {
     return !!this.currentUser;
+  }
+
+  updateCurrentUser(firstName: string, lastName: string) {
+    this.currentUser.firstName = firstName;
+    this.currentUser.lastName = lastName;
+    // this._toastr.success('User Profiled updated!');
   }
 }
