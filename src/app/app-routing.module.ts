@@ -1,7 +1,7 @@
 import { NgModule } from '@angular/core';
 import { RouterModule } from '@angular/router';
 
-import { Error404Component } from './errors/404.component';
+import { Error404Component } from './shared/errors/404.component';
 
 @NgModule({
   imports: [

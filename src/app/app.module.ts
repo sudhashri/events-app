@@ -8,17 +8,17 @@ import { ToastModule } from 'ng2-toastr/ng2-toastr';
 import { AppRoutingModule } from './app-routing.module';
 import { EventsModule } from './events/events.module';
 import { UserModule } from './user/user.module';
+import { SharedModule } from './shared/shared.module';
 
 import { AppComponent } from './app.component';
 import { NavComponent } from './nav/nav.component';
-import { Error404Component } from './errors/404.component';
+
 import { AuthService } from './user/auth.service';
 
 @NgModule({
   declarations: [
     AppComponent,
-    NavComponent,
-    Error404Component
+    NavComponent
   ],
   imports: [
     BrowserModule,
@@ -29,7 +29,8 @@ import { AuthService } from './user/auth.service';
     ReactiveFormsModule,
     AppRoutingModule,
     UserModule,
-    EventsModule
+    EventsModule,
+    SharedModule
   ],
   providers: [AuthService],
   bootstrap: [AppComponent]

@@ -1,14 +1,11 @@
-<div class="row" style="padding: 10px;">
-  <accordion [closeOthers]="oneAtATime">
-    <accordion-group #group *ngFor="let session of sessions">
-      <div accordion-heading>
-        <h4>{{session.name}}</h4>
-      </div>
+<div class="row" *ngFor="let session of sessions">
+  <div class="col-md-10">
+    <app-collapsible-well [title]="session.name">
       <h6>{{session.presenter}}</h6>
       <span>Duration: {{session.duration}}</span>
-      <br />
+      <br>
       <span>Level: {{session.level}}</span>
       <p>{{session.abstract}}</p>
-    </accordion-group>
-  </accordion>
+    </app-collapsible-well>
+  </div>
 </div>
