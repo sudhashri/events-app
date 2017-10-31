@@ -1,0 +1,14 @@
+<div class="row" style="padding: 10px;">
+  <accordion [closeOthers]="oneAtATime">
+    <accordion-group #group *ngFor="let session of sessions">
+      <div accordion-heading>
+        <h4>{{session.name}}</h4>
+      </div>
+      <h6>{{session.presenter}}</h6>
+      <span>Duration: {{session.duration}}</span>
+      <br />
+      <span>Level: {{session.level}}</span>
+      <p>{{session.abstract}}</p>
+    </accordion-group>
+  </accordion>
+</div>

@@ -6,6 +6,7 @@ import { CreateEventComponent } from './create-event/create-event.component';
 import { EventListComponent } from './event-list/event-list.component';
 import { EventRouteActivatorService } from './event-details/event-route-activator.service';
 import { EventDetailsComponent } from './event-details/event-details.component';
+import { CreateSessionComponent } from './session/create-session/create-session.component';
 
 @NgModule({
   imports: [
@@ -20,6 +21,10 @@ import { EventDetailsComponent } from './event-details/event-details.component';
         path: 'events/:id',
         canActivate: [EventRouteActivatorService],
         component: EventDetailsComponent
+      },
+      {
+        path: 'events/session/new',
+        component: CreateSessionComponent
       },
       { path: '', redirectTo: 'events', pathMatch: 'full' },
       { path: '**', redirectTo: 'events', pathMatch: 'full' }

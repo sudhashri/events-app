@@ -2,6 +2,7 @@ import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { HttpClientModule } from '@angular/common/http';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { ToastModule } from 'ng2-toastr/ng2-toastr';
 
 import { AppRoutingModule } from './app-routing.module';
@@ -24,6 +25,8 @@ import { AuthService } from './user/auth.service';
     BrowserAnimationsModule,
     ToastModule.forRoot(),
     HttpClientModule,
+    FormsModule,
+    ReactiveFormsModule,
     AppRoutingModule,
     UserModule,
     EventsModule

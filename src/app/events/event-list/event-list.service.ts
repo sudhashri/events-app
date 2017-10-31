@@ -1,7 +1,6 @@
 import { Injectable } from '@angular/core';
 import { HttpClient, HttpErrorResponse } from '@angular/common/http';
-import { Observable } from 'rxjs/Observable';
-import { Subject } from 'rxjs/RX';
+import { Subject, Observable } from 'rxjs/RX';
 import 'rxjs/add/operator/catch';
 import 'rxjs/add/operator/do';
 import 'rxjs/add/operator/map';
@@ -16,14 +15,31 @@ export class EventListService {
   constructor(private _http: HttpClient) {}
 
   getEventsList(): Observable<IEvent[]> {
-    return this._http
-      .get<IEvent[]>(this._listOfEventsUrl)
-      .do(data => data)
-      .catch(this.handleError);
+    // return this._http
+    //   .get<IEvent[]>(this._listOfEventsUrl)
+    //   .do(data => data)
+    //   .catch(this.handleError);
+    const subject = new Subject<IEvent[]>();
+    setTimeout(() => {
+      subject.next(EVENTS);
+      subject.complete();
+    });
+    return subject;
   }
 
-  getEvent(id: number) {
+  getEvent(id: number): IEvent {
     return EVENTS.find(data => data.id === id);
+  }
+
+  saveEvent(event: IEvent): void {
+    event.id = 999;
+    event.sessions = [];
+    EVENTS.push(event);
+  }
+
+  updateEvent(event: IEvent): void {
+    const index = EVENTS.indexOf(event);
+    EVENTS[index] = event;
   }
 
   private handleError(err: HttpErrorResponse) {

@@ -3,7 +3,7 @@ import { Router, ActivatedRoute } from '@angular/router';
 
 import { EventListService } from '../event-list/event-list.service';
 
-import { IEvent } from '../../models/events/event';
+import { IEvent, ISession } from '../../models/events/event';
 
 @Component({
   templateUrl: './event-details.component.html',
@@ -11,6 +11,7 @@ import { IEvent } from '../../models/events/event';
 })
 export class EventDetailsComponent implements OnInit {
   event: IEvent;
+  addMode = false;
 
   constructor(
     private _route: ActivatedRoute,
@@ -25,5 +26,21 @@ export class EventDetailsComponent implements OnInit {
 
   private onBack(): void {
     this._router.navigate(['/events']);
+  }
+
+  addSession() {
+    this.addMode = true;
+  }
+
+  saveNewSession(session: ISession) {
+    const nextId = Math.max.apply(null, this.event.sessions.map(s => s.id));
+    session.id = nextId + 1;
+    this.event.sessions.push(session);
+    this._eventListService.updateEvent(this.event);
+    this.addMode = false;
+  }
+
+  cancelAddSession() {
+    this.addMode = false;
   }
 }
