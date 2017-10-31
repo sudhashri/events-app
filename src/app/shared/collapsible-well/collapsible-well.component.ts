@@ -4,15 +4,20 @@ import { Component, Input } from '@angular/core';
   selector: 'app-collapsible-well',
   template: `
     <div class='well pointable' (click)='toggleContent()'>
-      <h4 class='well-tile'>{{title}}</h4>
-      <ng-content *ngIf='visible'></ng-content>
+      <h4>
+        <!-- Select which content to be displayed uinsg 'select'-->
+        <ng-content select="[well-title]"></ng-content>
+      </h4>
+      <ng-content *ngIf='visible' select=".body"></ng-content>
     </div>
   `,
-  styles: [`
+  styles: [
+    `
   div {
     background-color: #2b3e50 !important;
   }
-  `]
+  `
+  ]
 })
 export class CollapsibleWellComponent {
   @Input() title: string;
