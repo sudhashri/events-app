@@ -7,7 +7,7 @@ import { IUser } from '../models/user/user';
 export class AuthService {
   currentUser: IUser;
 
-  constructor(public _toastr: ToastsManager) {}
+  constructor() {}
 
   loginUser(userName: string, password: string): void {
     this.currentUser = {
@@ -26,6 +26,5 @@ export class AuthService {
   updateCurrentUser(firstName: string, lastName: string) {
     this.currentUser.firstName = firstName;
     this.currentUser.lastName = lastName;
-    // this._toastr.success('User Profiled updated!');
   }
 }

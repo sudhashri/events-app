@@ -3,7 +3,7 @@ import { NgModule } from '@angular/core';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { HttpClientModule } from '@angular/common/http';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
-import { ToastModule } from 'ng2-toastr/ng2-toastr';
+import { ToastModule, ToastOptions } from 'ng2-toastr/ng2-toastr';
 
 import { AppRoutingModule } from './app-routing.module';
 import { EventsModule } from './events/events.module';
@@ -14,6 +14,12 @@ import { AppComponent } from './app.component';
 import { NavComponent } from './nav/nav.component';
 
 import { AuthService } from './user/auth.service';
+
+// Customize options globally
+export class ToastCustomOptions extends ToastOptions {
+  dismiss = 'auto';
+  toastLife = 1000;
+}
 
 @NgModule({
   declarations: [
@@ -32,7 +38,9 @@ import { AuthService } from './user/auth.service';
     EventsModule,
     SharedModule
   ],
-  providers: [AuthService],
+  providers: [AuthService, { provide: ToastOptions, useClass: ToastCustomOptions}],
   bootstrap: [AppComponent]
 })
 export class AppModule {}
+
+
