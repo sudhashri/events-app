@@ -8,7 +8,7 @@ import { ToastModule } from 'ng2-toastr/ng2-toastr';
 import { AppRoutingModule } from './app-routing.module';
 import { EventsModule } from './events/events.module';
 import { UserModule } from './user/user.module';
-import { SharedModule } from "./shared/shared.module";
+import { SharedModule } from './shared/shared.module';
 
 import { AppComponent } from './app.component';
 import { NavComponent } from './nav/nav.component';

@@ -1,11 +1,14 @@
 <div class="row" style="padding: 10px;">
   <accordion [closeOthers]="oneAtATime">
-    <accordion-group #group *ngFor="let session of sessions">
+    <accordion-group #group *ngFor="let session of visibleSessions">
       <div accordion-heading>
-        <h4>{{session.name}}</h4>
+        <h4>
+          {{session.name}}
+          <i *ngIf="session.voters.length > 3" class="glyphicon glyphicon-fire" style="color:red"></i>
+        </h4>
       </div>
       <h6>{{session.presenter}}</h6>
-      <span>Duration: {{session.duration}}</span>
+      <span>Duration: {{session.duration | duration}}</span>
       <br />
       <span>Level: {{session.level}}</span>
       <p>{{session.abstract}}</p>
