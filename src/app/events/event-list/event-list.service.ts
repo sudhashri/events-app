@@ -1,4 +1,4 @@
-import { Injectable } from '@angular/core';
+import { Injectable, EventEmitter } from '@angular/core';
 import { HttpClient, HttpErrorResponse } from '@angular/common/http';
 import { Subject, Observable } from 'rxjs/RX';
 import 'rxjs/add/operator/catch';
@@ -6,7 +6,7 @@ import 'rxjs/add/operator/do';
 import 'rxjs/add/operator/map';
 import 'rxjs/add/observable/throw';
 
-import { IEvent } from '../../models/events/event';
+import { IEvent, ISession } from '../../models/events/event';
 
 @Injectable()
 export class EventListService {
@@ -40,6 +40,28 @@ export class EventListService {
   updateEvent(event: IEvent): void {
     const index = EVENTS.indexOf(event);
     EVENTS[index] = event;
+  }
+
+  searchSessions(searchTerm: string): EventEmitter<any> {
+    const term = searchTerm.toLocaleLowerCase();
+    let results: ISession[] = [];
+
+    EVENTS.forEach(event => {
+      let matchigSessions = event.sessions.filter(
+        session => session.name.toLocaleLowerCase().indexOf(term) > -1
+      );
+      matchigSessions = matchigSessions.map((session: any) => {
+        session.eventId = event.id;
+        return session;
+      });
+      results = results.concat(matchigSessions);
+    });
+
+    const emitter = new EventEmitter(true);
+    setTimeout(() => {
+      emitter.emit(results);
+    }, 100);
+    return emitter;
   }
 
   private handleError(err: HttpErrorResponse) {
