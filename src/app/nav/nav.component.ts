@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 
 import { AuthService } from '../user/auth.service';
+import { ISession } from '../models/events/event';
 
 @Component({
   selector: 'app-nav',
@@ -8,10 +9,12 @@ import { AuthService } from '../user/auth.service';
   styleUrls: ['./nav.component.css']
 })
 export class NavComponent implements OnInit {
+  searchText: string;
+  filteredSessions: ISession[] = [];
 
-  constructor(public _authService: AuthService) { }
+  constructor(public _authService: AuthService) {}
 
-  ngOnInit() {
-  }
+  ngOnInit() {}
 
+  searchSessions(searchText) {}
 }

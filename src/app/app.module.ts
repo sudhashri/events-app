@@ -14,6 +14,9 @@ import { AppComponent } from './app.component';
 import { NavComponent } from './nav/nav.component';
 
 import { AuthService } from './user/auth.service';
+import { JQ_TOKEN } from './shared/jquery.service';
+
+declare let jQuery: Object;
 
 // Customize options globally
 export class ToastCustomOptions extends ToastOptions {
@@ -38,7 +41,11 @@ export class ToastCustomOptions extends ToastOptions {
     EventsModule,
     SharedModule
   ],
-  providers: [AuthService, { provide: ToastOptions, useClass: ToastCustomOptions}],
+  providers: [
+    AuthService,
+    { provide: ToastOptions, useClass: ToastCustomOptions},
+    { provide: JQ_TOKEN, useValue: jQuery}
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule {}
