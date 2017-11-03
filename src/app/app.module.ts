@@ -14,9 +14,7 @@ import { AppComponent } from './app.component';
 import { NavComponent } from './nav/nav.component';
 
 import { AuthService } from './user/auth.service';
-import { JQ_TOKEN } from './shared/jquery.service';
-
-declare let jQuery: Object;
+import { ModalTriggerDirective } from './shared/simple-modal/modal-trigger.directive';
 
 // Customize options globally
 export class ToastCustomOptions extends ToastOptions {
@@ -27,7 +25,8 @@ export class ToastCustomOptions extends ToastOptions {
 @NgModule({
   declarations: [
     AppComponent,
-    NavComponent
+    NavComponent,
+    ModalTriggerDirective
   ],
   imports: [
     BrowserModule,
@@ -43,8 +42,7 @@ export class ToastCustomOptions extends ToastOptions {
   ],
   providers: [
     AuthService,
-    { provide: ToastOptions, useClass: ToastCustomOptions},
-    // { provide: JQ_TOKEN, useValue: jQuery}
+    { provide: ToastOptions, useClass: ToastCustomOptions}
   ],
   bootstrap: [AppComponent]
 })

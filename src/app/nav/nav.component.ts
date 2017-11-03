@@ -20,10 +20,11 @@ export class NavComponent implements OnInit {
 
   ngOnInit() {}
 
-  searchSessions(searchTerm) {
-    this._eventListService.searchSessions(searchTerm).subscribe(sessions => {
+  searchSessions(searchText) {
+    console.log(searchText);
+    this._eventListService.searchSessions(searchText).subscribe(sessions => {
       this.filteredSessions = sessions;
-      // console.log(this.foundSessions.length);
+      console.log(this.filteredSessions);
       // if (this.foundSessions.length > 0) {
       //   this.sessionsModal.show();
       // }

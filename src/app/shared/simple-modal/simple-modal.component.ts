@@ -10,5 +10,7 @@ export class SimpleModalComponent implements OnInit {
 
   constructor() {}
 
-  ngOnInit() {}
+  ngOnInit() {
+
+  }
 }
