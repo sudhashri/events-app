@@ -44,7 +44,7 @@ export class ToastCustomOptions extends ToastOptions {
   providers: [
     AuthService,
     { provide: ToastOptions, useClass: ToastCustomOptions},
-    { provide: JQ_TOKEN, useValue: jQuery}
+    // { provide: JQ_TOKEN, useValue: jQuery}
   ],
   bootstrap: [AppComponent]
 })
