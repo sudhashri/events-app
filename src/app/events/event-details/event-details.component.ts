@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { Router, ActivatedRoute } from '@angular/router';
+import { Router, ActivatedRoute, Params } from '@angular/router';
 
 import { EventListService } from '../event-list/event-list.service';
 
@@ -22,8 +22,16 @@ export class EventDetailsComponent implements OnInit {
   ) {}
 
   ngOnInit() {
-    const eventId = +this._route.snapshot.paramMap.get('id');
-    this.event = this._eventListService.getEvent(eventId);
+    this._route.params.forEach((params: Params) => {
+      this.resetDefaults();
+      this.event = this._eventListService.getEvent(+params['id']);
+    });
+  }
+
+  private resetDefaults() {
+    this.addMode = false;
+    this.filterBy = 'all';
+    this.sortBy = 'votes';
   }
 
   private onBack(): void {

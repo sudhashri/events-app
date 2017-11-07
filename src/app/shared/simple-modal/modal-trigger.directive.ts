@@ -1,4 +1,4 @@
-import { Directive, OnInit, ElementRef} from '@angular/core';
+import { Directive, OnInit, ElementRef, Input} from '@angular/core';
 
 declare var jQuery: any;
 
@@ -7,14 +7,15 @@ declare var jQuery: any;
 })
 export class ModalTriggerDirective implements OnInit {
   private el: HTMLElement;
+  @Input('appModalTrigger') appModalTrigger: string;
 
   constructor(private _ref: ElementRef) {
     this.el = this._ref.nativeElement;
-   }
+  }
 
   ngOnInit() {
     this.el.addEventListener('click', e => {
-      jQuery('#simple-modal').modal({});
+      jQuery(`#${this.appModalTrigger}`).modal({});
     });
   }
 }

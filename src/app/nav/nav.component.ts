@@ -10,7 +10,7 @@ import { EventListService } from '../events/event-list/event-list.service';
   styleUrls: ['./nav.component.css']
 })
 export class NavComponent implements OnInit {
-  searchText: string;
+  searchText = '';
   filteredSessions: ISession[] = [];
 
   constructor(
@@ -21,13 +21,8 @@ export class NavComponent implements OnInit {
   ngOnInit() {}
 
   searchSessions(searchText) {
-    console.log(searchText);
     this._eventListService.searchSessions(searchText).subscribe(sessions => {
       this.filteredSessions = sessions;
-      console.log(this.filteredSessions);
-      // if (this.foundSessions.length > 0) {
-      //   this.sessionsModal.show();
-      // }
     });
   }
 }

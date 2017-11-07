@@ -1,16 +1,21 @@
-import { Component, OnInit, Input } from '@angular/core';
+import { Component, Input, ViewChild, ElementRef } from '@angular/core';
+
+declare var jQuery: any;
 
 @Component({
   selector: 'app-simple-modal',
   templateUrl: './simple-modal.component.html',
   styleUrls: ['./simple-modal.component.css']
 })
-export class SimpleModalComponent implements OnInit {
+export class SimpleModalComponent {
   @Input() title: string;
+  @Input() elementId: string;
+  @Input() closeOnBodyClick: string;
+  @ViewChild('modalContainer') containerEle: ElementRef;
 
-  constructor() {}
-
-  ngOnInit() {
-
+  closeModal() {
+    if (this.closeOnBodyClick.toLocaleLowerCase() === 'true') {
+      jQuery(this.containerEle.nativeElement).modal('hide');
+    }
   }
 }

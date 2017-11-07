@@ -44,8 +44,6 @@ export class EventListService {
 
   searchSessions(searchText: string): EventEmitter<any> {
     const term = searchText.toLocaleLowerCase();
-    console.log(term);
-
     let results: ISession[] = [];
 
     EVENTS.forEach(event => {
