@@ -1,12 +1,13 @@
 import { NgModule } from '@angular/core';
 import { RouterModule } from '@angular/router';
 
-import { CreateRouteDeactivatorService } from './create-event/create-event-deactivator.service';
 import { CreateEventComponent } from './create-event/create-event.component';
 import { EventListComponent } from './event-list/event-list.component';
-import { EventRouteActivatorService } from './event-details/event-route-activator.service';
 import { EventDetailsComponent } from './event-details/event-details.component';
 import { CreateSessionComponent } from './session/create-session/create-session.component';
+
+import { CreateRouteDeactivatorService } from './shared/create-event-deactivator.service';
+import { EventRouteActivatorService } from './shared/event-route-activator.service';
 
 @NgModule({
   imports: [

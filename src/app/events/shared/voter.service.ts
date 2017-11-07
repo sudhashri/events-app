@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 
-import { ISession } from '../../../models/events/event';
+import { ISession } from '../../models/events/event';
 
 @Injectable()
 export class VoterService {

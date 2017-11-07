@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import { CanDeactivate } from '@angular/router';
 
-import { CreateEventComponent } from './create-event.component';
+import { CreateEventComponent } from '../create-event/create-event.component';
 
 @Injectable()
 export class CreateRouteDeactivatorService implements CanDeactivate<CreateEventComponent> {

@@ -3,7 +3,7 @@ import { Component, OnChanges, Input } from '@angular/core';
 import { ISession } from '../../../models/events/event';
 
 import { AuthService } from '../../../user/auth.service';
-import { VoterService } from '../upvote/voter.service';
+import { VoterService } from '../../shared/voter.service';
 
 @Component({
   selector: 'app-list-sessions',

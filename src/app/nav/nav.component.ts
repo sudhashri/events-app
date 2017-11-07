@@ -1,10 +1,10 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
+import { ModalDirective } from 'ngx-bootstrap';
 
 import { ISession } from '../models/events/event';
 
 import { AuthService } from '../user/auth.service';
-import { EventListService } from '../events/event-list/event-list.service';
-import { ModalDirective } from 'ngx-bootstrap';
+import { EventService } from '../events/shared/event.service';
 
 @Component({
   selector: 'app-nav',
@@ -18,13 +18,13 @@ export class NavComponent implements OnInit {
 
   constructor(
     public _authService: AuthService,
-    private _eventListService: EventListService
+    private _eventService: EventService
   ) {}
 
   ngOnInit() {}
 
   searchSessions(searchTerm) {
-    this._eventListService.searchSessions(searchTerm).subscribe(sessions => {
+    this._eventService.searchSessions(searchTerm).subscribe(sessions => {
       this.foundSessions = sessions;
       console.log(this.foundSessions.length);
       if (this.foundSessions.length > 0) {

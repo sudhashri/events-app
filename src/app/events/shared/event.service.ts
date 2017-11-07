@@ -9,7 +9,7 @@ import 'rxjs/add/observable/throw';
 import { IEvent, ISession } from '../../models/events/event';
 
 @Injectable()
-export class EventListService {
+export class EventService {
   private _listOfEventsUrl = '../../../api/events/events.json';
 
   constructor(private _http: HttpClient) {}

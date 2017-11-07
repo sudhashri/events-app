@@ -1,9 +1,9 @@
 import { Component, OnInit } from '@angular/core';
 import { Router, ActivatedRoute, Params } from '@angular/router';
 
-import { EventListService } from '../event-list/event-list.service';
-
 import { IEvent, ISession } from '../../models/events/event';
+
+import { EventService } from '../shared/event.service';
 
 @Component({
   templateUrl: './event-details.component.html',
@@ -18,13 +18,13 @@ export class EventDetailsComponent implements OnInit {
   constructor(
     private _route: ActivatedRoute,
     private _router: Router,
-    private _eventListService: EventListService
+    private _eventService: EventService
   ) {}
 
   ngOnInit() {
     this._route.params.forEach((params: Params) => {
       this.resetToDefaults();
-      this.event = this._eventListService.getEvent(+params['id']);
+      this.event = this._eventService.getEvent(+params['id']);
     });
   }
 
@@ -46,7 +46,7 @@ export class EventDetailsComponent implements OnInit {
     const nextId = Math.max.apply(null, this.event.sessions.map(s => s.id));
     session.id = nextId + 1;
     this.event.sessions.push(session);
-    this._eventListService.updateEvent(this.event);
+    this._eventService.updateEvent(this.event);
     this.addMode = false;
   }
 

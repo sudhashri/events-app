@@ -9,15 +9,15 @@
 
       </div>
       <div class="row">
-        <div class="col-md-1" *ngIf="authService.isAuthenticated()">
-          <app-upvote (vote)="toggleVote(session)" [count]="session.voters.length" [voted]="userHasVoted(session)"></app-upvote>
-        </div>
         <div class="col-md-10">
           <h6>{{session.presenter}}</h6>
           <span>Duration: {{session.duration | duration}}</span>
           <br />
           <span>Level: {{session.level}}</span>
           <p>{{session.abstract}}</p>
+        </div>
+        <div class="col-md-1" *ngIf="authService.isAuthenticated()">
+          <app-upvote (vote)="toggleVote(session)" [count]="session.voters.length" [voted]="userHasVoted(session)"></app-upvote>
         </div>
       </div>
     </accordion-group>

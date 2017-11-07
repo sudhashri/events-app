@@ -12,13 +12,15 @@ import { EventListComponent } from './event-list/event-list.component';
 import { EventThumbnailComponent } from './event-thumbnail/event-thumbnail.component';
 import { CreateSessionComponent } from './session/create-session/create-session.component';
 import { ListSessionsComponent } from './session/list-sessions/list-sessions.component';
+import { UpvoteComponent } from './shared/upvote/upvote.component';
 
-import { EventListService } from './event-list/event-list.service';
+import { EventService } from './shared/event.service';
+import { VoterService } from './shared/voter.service';
 
-import { EventRouteActivatorService } from './event-details/event-route-activator.service';
-import { CreateRouteDeactivatorService } from './create-event/create-event-deactivator.service';
-import { UpvoteComponent } from './session/upvote/upvote.component';
-import { VoterService } from './session/upvote/voter.service';
+import { LocationValidatorDirective } from './shared/location-validator.directive';
+
+import { EventRouteActivatorService } from './shared/event-route-activator.service';
+import { CreateRouteDeactivatorService } from './shared/create-event-deactivator.service';
 
 @NgModule({
   imports: [
@@ -37,10 +39,11 @@ import { VoterService } from './session/upvote/voter.service';
     CreateEventComponent,
     CreateSessionComponent,
     ListSessionsComponent,
-    UpvoteComponent
+    UpvoteComponent,
+    LocationValidatorDirective
   ],
   providers: [
-    EventListService,
+    EventService,
     EventRouteActivatorService,
     CreateRouteDeactivatorService,
     VoterService
