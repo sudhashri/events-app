@@ -17,6 +17,8 @@ import { EventListService } from './event-list/event-list.service';
 
 import { EventRouteActivatorService } from './event-details/event-route-activator.service';
 import { CreateRouteDeactivatorService } from './create-event/create-event-deactivator.service';
+import { UpvoteComponent } from './session/upvote/upvote.component';
+import { VoterService } from './session/upvote/voter.service';
 
 @NgModule({
   imports: [
@@ -34,12 +36,14 @@ import { CreateRouteDeactivatorService } from './create-event/create-event-deact
     EventDetailsComponent,
     CreateEventComponent,
     CreateSessionComponent,
-    ListSessionsComponent
+    ListSessionsComponent,
+    UpvoteComponent
   ],
   providers: [
     EventListService,
     EventRouteActivatorService,
-    CreateRouteDeactivatorService
+    CreateRouteDeactivatorService,
+    VoterService
   ]
 })
 export class EventsModule {}

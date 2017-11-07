@@ -6,12 +6,20 @@
           {{session.name}}
           <i *ngIf="session.voters.length > 3" class="glyphicon glyphicon-fire" style="color:red"></i>
         </h4>
+
       </div>
-      <h6>{{session.presenter}}</h6>
-      <span>Duration: {{session.duration | duration}}</span>
-      <br />
-      <span>Level: {{session.level}}</span>
-      <p>{{session.abstract}}</p>
+      <div class="row">
+        <div class="col-md-1" *ngIf="authService.isAuthenticated()">
+          <app-upvote (vote)="toggleVote(session)" [count]="session.voters.length" [voted]="userHasVoted(session)"></app-upvote>
+        </div>
+        <div class="col-md-10">
+          <h6>{{session.presenter}}</h6>
+          <span>Duration: {{session.duration | duration}}</span>
+          <br />
+          <span>Level: {{session.level}}</span>
+          <p>{{session.abstract}}</p>
+        </div>
+      </div>
     </accordion-group>
   </accordion>
 </div>

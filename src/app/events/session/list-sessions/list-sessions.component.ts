@@ -2,6 +2,9 @@ import { Component, OnChanges, Input } from '@angular/core';
 
 import { ISession } from '../../../models/events/event';
 
+import { AuthService } from '../../../user/auth.service';
+import { VoterService } from '../upvote/voter.service';
+
 @Component({
   selector: 'app-list-sessions',
   templateUrl: './list-sessions.component.html',
@@ -16,7 +19,10 @@ export class ListSessionsComponent implements OnChanges {
 
   oneAtATime = true;
 
-  constructor() {}
+  constructor(
+    public authService: AuthService,
+    private _voterService: VoterService
+  ) {}
 
   ngOnChanges() {
     if (this.sessions) {
@@ -36,6 +42,30 @@ export class ListSessionsComponent implements OnChanges {
         return session.level.toLocaleLowerCase() === filter;
       });
     }
+  }
+
+  toggleVote(session: ISession) {
+    if (this.userHasVoted(session)) {
+      this._voterService.deleteVoter(
+        session,
+        this.authService.currentUser.userName
+      );
+    } else {
+      this._voterService.addVoter(
+        session,
+        this.authService.currentUser.userName
+      );
+    }
+    if (this.sortBy === 'votes') {
+      this.visibleSessions.sort(sortByVotesDesc);
+    }
+  }
+
+  userHasVoted(session: ISession) {
+    return this._voterService.userHasVoted(
+      session,
+      this.authService.currentUser.userName
+    );
   }
 }
 

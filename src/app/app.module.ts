@@ -19,7 +19,7 @@ import { AuthService } from './user/auth.service';
 // Customize options globally
 export class ToastCustomOptions extends ToastOptions {
   dismiss = 'auto';
-  toastLife = 1000;
+  toastLife = 500;
 }
 
 @NgModule({
