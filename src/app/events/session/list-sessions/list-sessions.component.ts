@@ -12,11 +12,11 @@ import { VoterService } from '../../shared/voter.service';
 })
 export class ListSessionsComponent implements OnChanges {
   @Input() sessions: ISession[];
-  visibleSessions: ISession[];
-
   @Input() filterBy: string;
   @Input() sortBy: string;
+  @Input() eventId: number;
 
+  visibleSessions: ISession[];
   oneAtATime = true;
 
   constructor(
@@ -47,11 +47,13 @@ export class ListSessionsComponent implements OnChanges {
   toggleVote(session: ISession) {
     if (this.userHasVoted(session)) {
       this._voterService.deleteVoter(
+        this.eventId,
         session,
         this.authService.currentUser.userName
       );
     } else {
       this._voterService.addVoter(
+        this.eventId,
         session,
         this.authService.currentUser.userName
       );
