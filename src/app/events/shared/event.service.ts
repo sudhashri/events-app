@@ -32,6 +32,7 @@ export class EventService {
       .catch(this.handleError);
   }
 
+  // Method to Save new event or update an existing event
   saveEvent(event: IEvent): Observable<IEvent> {
     const headers = new Headers({ 'Content-Type': 'application/json' });
     const options = new RequestOptions({ headers: headers });
@@ -43,31 +44,13 @@ export class EventService {
       .catch(this.handleError);
   }
 
-  updateEvent(event: IEvent): void {
-    const index = EVENTS.indexOf(event);
-    EVENTS[index] = event;
-  }
-
-  searchSessions(searchTerm: string): EventEmitter<any> {
-    const term = searchTerm.toLocaleLowerCase();
-    let results: ISession[] = [];
-
-    EVENTS.forEach(event => {
-      let matchigSessions = event.sessions.filter(
-        session => session.name.toLocaleLowerCase().indexOf(term) > -1
-      );
-      matchigSessions = matchigSessions.map((session: any) => {
-        session.eventId = event.id;
-        return session;
-      });
-      results = results.concat(matchigSessions);
-    });
-
-    const emitter = new EventEmitter(true);
-    setTimeout(() => {
-      emitter.emit(results);
-    }, 100);
-    return emitter;
+  searchSessions(searchTerm: string): Observable<ISession[]> {
+    return this._http
+      .get(this._serverApi + 'sessions/search?search=' + searchTerm)
+      .map((response: Response) => {
+        return <ISession[]>response.json();
+      })
+      .catch(this.handleError);
   }
 
   private handleError(err: Response) {

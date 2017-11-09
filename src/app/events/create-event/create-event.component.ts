@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 
 import { EventService } from '../shared/event.service';
+import { log } from 'util';
 
 @Component({
   selector: 'app-create-event',
@@ -20,6 +21,15 @@ export class CreateEventComponent implements OnInit {
   }
 
   private saveEvent(formValues) {
+    if (
+      formValues.location.address &&
+      formValues.location.city &&
+      formValues.location.country
+    ) {
+      delete formValues['onlineUrl'];
+    } else {
+      delete formValues['location'];
+    }
     this._eventService.saveEvent(formValues).subscribe(event => {
       this.isDirty = false;
       this._router.navigate(['/events']);

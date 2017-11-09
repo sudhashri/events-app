@@ -8,8 +8,6 @@
       "root": "src",
       "outDir": "dist",
       "assets": [
-        "assets",
-        "api",
         "favicon.ico",
         "app/assets"
       ],
