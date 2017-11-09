@@ -10,14 +10,17 @@ import { EventService } from '../shared/event.service';
   styleUrls: ['./event-list.component.css']
 })
 export class EventListComponent implements OnInit {
-
   events: IEvent[];
 
-  constructor(private _eventService: EventService, private _toastr: ToastsManager) { }
+  constructor(
+    private _eventService: EventService,
+    private _toastr: ToastsManager
+  ) {}
 
   ngOnInit() {
-    this._eventService.getEventsList()
-      .subscribe(events => { this.events = events; });
+    this._eventService.getEventsList().subscribe(events => {
+      this.events = events;
+    });
   }
 
   handleThumbnailClick(eventName: string) {

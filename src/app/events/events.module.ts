@@ -19,8 +19,8 @@ import { VoterService } from './shared/voter.service';
 
 import { LocationValidatorDirective } from './shared/location-validator.directive';
 
-import { EventRouteActivatorService } from './shared/event-route-activator.service';
 import { CreateRouteDeactivatorService } from './shared/create-event-deactivator.service';
+import { EventResolverService } from '../events/shared/event-resolver.service';
 
 @NgModule({
   imports: [
@@ -44,9 +44,9 @@ import { CreateRouteDeactivatorService } from './shared/create-event-deactivator
   ],
   providers: [
     EventService,
-    EventRouteActivatorService,
     CreateRouteDeactivatorService,
-    VoterService
+    VoterService,
+    EventResolverService
   ]
 })
 export class EventsModule {}

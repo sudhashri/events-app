@@ -7,7 +7,7 @@ import { EventDetailsComponent } from './event-details/event-details.component';
 import { CreateSessionComponent } from './session/create-session/create-session.component';
 
 import { CreateRouteDeactivatorService } from './shared/create-event-deactivator.service';
-import { EventRouteActivatorService } from './shared/event-route-activator.service';
+import { EventResolverService } from '../events/shared/event-resolver.service';
 
 @NgModule({
   imports: [
@@ -17,11 +17,14 @@ import { EventRouteActivatorService } from './shared/event-route-activator.servi
         canDeactivate: [CreateRouteDeactivatorService],
         component: CreateEventComponent
       },
-      { path: 'events', component: EventListComponent },
+      {
+        path: 'events',
+        component: EventListComponent
+      },
       {
         path: 'events/:id',
-        canActivate: [EventRouteActivatorService],
-        component: EventDetailsComponent
+        component: EventDetailsComponent,
+        resolve: { event: EventResolverService }
       },
       {
         path: 'events/session/new',

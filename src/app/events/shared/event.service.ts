@@ -1,5 +1,5 @@
 import { Injectable, EventEmitter } from '@angular/core';
-import { HttpClient, HttpErrorResponse } from '@angular/common/http';
+import { Http, Response, RequestOptions, Headers } from '@angular/http';
 import { Subject, Observable } from 'rxjs/RX';
 import 'rxjs/add/operator/catch';
 import 'rxjs/add/operator/do';
@@ -10,31 +10,37 @@ import { IEvent, ISession } from '../../models/events/event';
 
 @Injectable()
 export class EventService {
-  private _listOfEventsUrl = '../../../api/events/events.json';
+  private _serverApi = 'http://localhost:8808/api/';
 
-  constructor(private _http: HttpClient) {}
+  constructor(private _http: Http) {}
 
   getEventsList(): Observable<IEvent[]> {
-    // return this._http
-    //   .get<IEvent[]>(this._listOfEventsUrl)
-    //   .do(data => data)
-    //   .catch(this.handleError);
-    const subject = new Subject<IEvent[]>();
-    setTimeout(() => {
-      subject.next(EVENTS);
-      subject.complete();
-    });
-    return subject;
+    return this._http
+      .get(this._serverApi + 'events')
+      .map((response: Response) => {
+        return <IEvent[]>response.json();
+      })
+      .catch(this.handleError);
   }
 
-  getEvent(id: number): IEvent {
-    return EVENTS.find(data => data.id === id);
+  getEvent(id: number): Observable<IEvent> {
+    return this._http
+      .get(this._serverApi + 'events/' + id)
+      .map((response: Response) => {
+        return <IEvent>response.json();
+      })
+      .catch(this.handleError);
   }
 
-  saveEvent(event: IEvent): void {
-    event.id = 999;
-    event.sessions = [];
-    EVENTS.push(event);
+  saveEvent(event: IEvent): Observable<IEvent> {
+    const headers = new Headers({ 'Content-Type': 'application/json' });
+    const options = new RequestOptions({ headers: headers });
+    return this._http
+      .post(this._serverApi + 'events', event, options)
+      .map((respone: Response) => {
+        return <IEvent>respone.json();
+      })
+      .catch(this.handleError);
   }
 
   updateEvent(event: IEvent): void {
@@ -64,9 +70,9 @@ export class EventService {
     return emitter;
   }
 
-  private handleError(err: HttpErrorResponse) {
-    console.error(err.message);
-    return Observable.throw(err.message);
+  private handleError(err: Response) {
+    console.error(err.statusText);
+    return Observable.throw(err.statusText);
   }
 }
 

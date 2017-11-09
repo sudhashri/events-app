@@ -26,7 +26,6 @@ export class NavComponent implements OnInit {
   searchSessions(searchTerm) {
     this._eventService.searchSessions(searchTerm).subscribe(sessions => {
       this.foundSessions = sessions;
-      console.log(this.foundSessions.length);
       if (this.foundSessions.length > 0) {
         this.sessionsModal.show();
       }

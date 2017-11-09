@@ -1,7 +1,7 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
-import { HttpClientModule } from '@angular/common/http';
+import { HttpModule } from '@angular/http';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { ToastModule, ToastOptions } from 'ng2-toastr/ng2-toastr';
 import { ModalModule } from 'ngx-bootstrap';
@@ -31,7 +31,7 @@ export class ToastCustomOptions extends ToastOptions {
     BrowserModule,
     BrowserAnimationsModule,
     ToastModule.forRoot(),
-    HttpClientModule,
+    HttpModule,
     FormsModule,
     ReactiveFormsModule,
     ModalModule.forRoot(),
@@ -44,5 +44,3 @@ export class ToastCustomOptions extends ToastOptions {
   bootstrap: [AppComponent]
 })
 export class AppModule {}
-
-

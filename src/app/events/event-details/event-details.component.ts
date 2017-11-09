@@ -22,9 +22,9 @@ export class EventDetailsComponent implements OnInit {
   ) {}
 
   ngOnInit() {
-    this._route.params.forEach((params: Params) => {
+    this._route.data.forEach((data) => {
       this.resetToDefaults();
-      this.event = this._eventService.getEvent(+params['id']);
+      this.event = data['event'];
     });
   }
 
