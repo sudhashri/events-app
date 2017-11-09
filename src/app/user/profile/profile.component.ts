@@ -42,17 +42,23 @@ export class ProfileComponent implements OnInit {
   }
 
   private onCancel(): void {
-    this._router.navigate(['events']);
+    this._router.navigate(['/events']);
   }
 
   private saveProfile(profileValues) {
     if (this.profileForm.valid) {
-      this._authService.updateCurrentUser(
-        profileValues.firstName,
-        profileValues.lastName
-      );
-      this._router.navigate(['events']);
+      this._authService
+        .updateCurrentUser(profileValues.firstName, profileValues.lastName)
+        .subscribe(() => {
+          this._router.navigate(['/events']);
+        });
     }
+  }
+
+  private logout() {
+    this._authService.logout().subscribe(() => {
+      this._router.navigate(['/user/login']);
+    });
   }
 
   private validateFirstName() {

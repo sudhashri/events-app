@@ -23,10 +23,7 @@ export class ToastCustomOptions extends ToastOptions {
 }
 
 @NgModule({
-  declarations: [
-    AppComponent,
-    NavComponent
-  ],
+  declarations: [AppComponent, NavComponent],
   imports: [
     BrowserModule,
     BrowserAnimationsModule,
@@ -40,7 +37,10 @@ export class ToastCustomOptions extends ToastOptions {
     EventsModule,
     SharedModule
   ],
-  providers: [AuthService, { provide: ToastOptions, useClass: ToastCustomOptions}],
+  providers: [
+    AuthService,
+    { provide: ToastOptions, useClass: ToastCustomOptions }
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule {}
