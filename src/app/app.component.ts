@@ -1,5 +1,5 @@
-import { Component, ViewContainerRef, OnInit } from '@angular/core';
-import { ToastsManager, Toast, ToastOptions } from 'ng2-toastr/ng2-toastr';
+import { Component, OnInit } from '@angular/core';
+import { ToastrService } from 'ngx-toastr';
 
 import { AuthService } from '../app/user/auth.service';
 
@@ -11,27 +11,10 @@ import { AuthService } from '../app/user/auth.service';
 export class AppComponent implements OnInit {
   title = 'app';
 
-  constructor(
-    public _toastr: ToastsManager,
-    _vcr: ViewContainerRef,
-    private _authService: AuthService
-  ) {
-    // this._toastr.setupToast(timeOut)
-    this._toastr.setRootViewContainerRef(_vcr);
-  }
+  constructor(private _authService: AuthService, private _toastr: ToastrService) { }
 
   ngOnInit() {
     this._authService.checkAuthenticationStatus();
-
-    this._toastr.success('App loaded!', 'Success!');
-
-    // Customize options locally
-    // this._toastr
-    //   .success('App loaded!', 'Success!', { dismiss: 'controlled' })
-    //   .then((toast: Toast) => {
-    //     setTimeout(() => {
-    //       this._toastr.dismissToast(toast);
-    //     }, 1000);
-    //   });
+    setTimeout(() => this._toastr.success('Event App Started!'));
   }
 }

@@ -1,7 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
-import { ToastsManager } from 'ng2-toastr';
 
 import { IUser } from '../../models/user/user';
 
@@ -20,8 +19,7 @@ export class ProfileComponent implements OnInit {
 
   constructor(
     private _router: Router,
-    private _authService: AuthService,
-    public _toastr: ToastsManager
+    private _authService: AuthService
   ) {}
 
   ngOnInit() {

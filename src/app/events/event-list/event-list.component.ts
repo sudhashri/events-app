@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
-import { ToastsManager } from 'ng2-toastr/ng2-toastr';
 
 import { IEvent } from '../../models/events/event';
+import { ToastrService } from 'ngx-toastr';
 
 import { EventService } from '../shared/event.service';
 
@@ -14,8 +14,8 @@ export class EventListComponent implements OnInit {
 
   constructor(
     private _eventService: EventService,
-    private _toastr: ToastsManager
-  ) {}
+    private _toastr: ToastrService
+  ) { }
 
   ngOnInit() {
     this._eventService.getEventsList().subscribe(events => {

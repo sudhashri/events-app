@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import { Http, RequestOptions, Headers } from '@angular/http';
-import { Observable } from 'rxjs/Observable';
-import { ToastsManager } from 'ng2-toastr/ng2-toastr';
+import { Observable, of } from 'rxjs';
+import { ToastrService } from 'ngx-toastr';
 
 import { IUser } from '../models/user/user';
 
@@ -10,7 +10,10 @@ export class AuthService {
   currentUser: IUser;
   private _serverApi = 'http://localhost:8808/api/';
 
-  constructor(private _http: Http, private _toastr: ToastsManager) {}
+  constructor(
+    private _http: Http,
+    private _toastr: ToastrService
+  ) { }
 
   loginUser(userName: string, password: string): Observable<any> {
     const headers = new Headers({ 'Content-Type': 'application/json' });
