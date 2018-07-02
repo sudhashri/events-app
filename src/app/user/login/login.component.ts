@@ -26,13 +26,14 @@ export class LoginComponent implements OnInit {
 
   private login(formValues) {
     this._authService
-      .loginUser(formValues.userName, formValues.password)
-      .subscribe(resp => {
-        if (!resp) {
-          this.loginInvalid = true;
-        } else {
-          this._router.navigate(['/events']);
-        }
-      });
+      .loginUser(formValues.userName, formValues.password);
+      // .subscribe(resp => {
+      //   if (!resp) {
+      //     this.loginInvalid = true;
+      //   } else {
+      //     this._router.navigate(['/events']);
+      //   }
+      // });
+    this._router.navigate(['/events']);
   }
 }

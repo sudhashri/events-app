@@ -15,7 +15,7 @@ export class AuthService {
     private _toastr: ToastrService
   ) { }
 
-  loginUser(userName: string, password: string): Observable<any> {
+  loginUser(userName: string, password: string){
     const headers = new Headers({ 'Content-Type': 'application/json' });
     const options = new RequestOptions({ headers: headers });
     const loginInfo = { username: userName, password: password };
@@ -30,6 +30,13 @@ export class AuthService {
       .catch(error => {
         return Observable.of(false);
       });
+
+    // this.currentUser = {
+    //   id: 1,
+    //   userName: userName,
+    //   firstName: 'John',
+    //   lastName: 'Papa'
+    // }
   }
 
   isAuthenticated(): boolean {
